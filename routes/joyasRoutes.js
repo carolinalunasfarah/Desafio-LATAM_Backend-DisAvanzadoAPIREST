@@ -1,24 +1,30 @@
 import { Router } from "express";
 import {
     getAllJoyas,
-    getJoyasFiltradas,
+    getAllJoyasWithQuery,
 } from "../src/controllers/joyasController.js";
-import { report } from "../src/middlewares/report.js";
 
 const router = Router();
 
 router
-    .route("/joyas", report)
+    .route("/inventario")
     .get(getAllJoyas)
     .all(function (req, res, next) {
-        res.status(405).json({ message: "methor not allowed" });
+        res.status(405).json({ message: "method not allowed" });
     });
 
 router
-    .route("/joyas/filtros", report)
-    .get(getJoyasFiltradas)
+    .route("/joyas")
+    .get(getAllJoyasWithQuery)
     .all(function (req, res, next) {
-        res.status(405).json({ message: "methor not allowed" });
+        res.status(405).json({ message: "method not allowed" });
     });
+
+// router
+//     .route("/joyas/filtros")
+//     .get(getJoyasFiltradas)
+//     .all(function (req, res, next) {
+//         res.status(405).json({ message: "method not allowed" });
+//     });
 
 export default router;

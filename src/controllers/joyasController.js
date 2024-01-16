@@ -1,4 +1,4 @@
-import { getJoyas } from "../models/joyaModel.js";
+import { getJoyas, getJoyasWithQuery } from "../models/joyaModel.js";
 
 export const getAllJoyas = async (req, res) => {
     try {
@@ -6,6 +6,16 @@ export const getAllJoyas = async (req, res) => {
         res.status(200).json(joyas);
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const getAllJoyasWithQuery = async (req, res) => {
+    try {
+        const { order_by, limit, page } = req.query;
+        const joyas = await getJoyasWithQuery(order_by, limit, page);
+        res.status(200).json({ joyas: joyas });
+    } catch (error) {
+        console.log("error", error);
     }
 };
 
