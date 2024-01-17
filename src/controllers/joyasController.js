@@ -3,7 +3,9 @@ import {
     getJoyasWithQuery,
     getJoyasWithFilters,
 } from "../models/joyaModel.js";
+
 import { prepareHATEOAS } from "../helpers/hateoas.js";
+import { errorFinder } from "../utils/utils.js";
 
 // TEST CONSULT TO SEE IF DATABASE IS CORRECTLY CONNECTED
 export const getAllJoyas = async (req, res) => {
@@ -12,6 +14,10 @@ export const getAllJoyas = async (req, res) => {
         res.status(200).json(joyas);
     } catch (error) {
         console.log(error);
+        const errorFound = errorFinder(error.code);
+        return res
+            .status(errorFound[0]?.status)
+            .json({ error: errorFound[0]?.message });
     }
 };
 
@@ -23,10 +29,15 @@ export const getAllJoyasWithQuery = async (req, res) => {
         const joyasWithHateoas = prepareHATEOAS("joyas", joyas);
         res.status(200).json({ joyas: joyasWithHateoas });
     } catch (error) {
-        console.log("error", error);
+        console.log(error);
+        const errorFound = errorFinder(error.code);
+        return res
+            .status(errorFound[0]?.status)
+            .json({ error: errorFound[0]?.message });
     }
 };
 
+// GET joyas WITH FILTERS AND filter helper
 // export const getFilteredJoyas = async (req, res) => {
 //     try {
 //         const { precio_max, precio_min, categoria, metal } = req.query;
@@ -38,7 +49,11 @@ export const getAllJoyasWithQuery = async (req, res) => {
 //         );
 //         res.status(200).json(joyas);
 //     } catch (error) {
-//         console.log("error");
+//         console.log(error);
+//         const errorFound = errorFinder(error.code);
+//         return res
+//             .status(errorFound[0]?.status)
+//             .json({ error: errorFound[0]?.message });
 //     }
 // };
 
@@ -51,6 +66,9 @@ export const getFilteredJoyas = async (req, res) => {
         res.status(200).json(joyas);
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        const errorFound = errorFinder(error.code);
+        return res
+            .status(errorFound[0]?.status)
+            .json({ error: errorFound[0]?.message });
     }
 };
