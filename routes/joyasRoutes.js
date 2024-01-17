@@ -7,6 +7,7 @@ import {
 
 const router = Router();
 
+// TEST CONSULT TO SEE IF DATABASE IS CORRECTLY CONNECTED
 router
     .route("/inventario")
     .get(getAllJoyas)
@@ -14,6 +15,7 @@ router
         res.status(405).json({ message: "method not allowed" });
     });
 
+// GET joyas USING QUERY STRINGS
 router
     .route("/joyas")
     .get(getAllJoyasWithQuery)
@@ -21,6 +23,7 @@ router
         res.status(405).json({ message: "method not allowed" });
     });
 
+// GET joyas WITH FILTERS
 router
     .route("/joyas/filtros")
     .get(getFilteredJoyas)
