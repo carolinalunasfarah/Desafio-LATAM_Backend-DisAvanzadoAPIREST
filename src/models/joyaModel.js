@@ -2,7 +2,7 @@ import { pool } from "../../database/connectionDB.js";
 import format from "pg-format";
 import { queryFilter } from "../helpers/filter.js";
 
-// TEST CONSULT TO SEE IF DATABASE IS CORRECTLY CONNECTED
+// GET inventario
 export const getJoyas = async (req, res) => {
     const SQLquery = { text: "SELECT * FROM inventario" };
     try {
@@ -32,34 +32,11 @@ export const getJoyasWithQuery = async (
         const response = await pool.query(formattedQuery);
         return response.rows;
     } catch (error) {
-        console.log(error);
+        throw new Error(
+            "Error getting jewels with this query: " + error.message
+        );
     }
 };
-
-// GET joyas WITH FILTERS
-// export const getJoyasWithFilters = async (
-//     precio_max,
-//     precio_min,
-//     categoria,
-//     metal
-// ) => {
-//     try {
-//         let filtros = [];
-//         if (precio_max) filtros.push(`precio<=${precio_max}`);
-//         if (precio_min) filtros.push(`precio>=${precio_min}`);
-//         if (categoria) filtros.push(`categoria='${categoria}'`);
-//         if (metal) filtros.push(`metal='${metal}'`);
-//         let query = "SELECT * FROM inventario";
-//         if (filtros.length > 0) {
-//             filtros = filtros.join(" AND ");
-//             query += ` WHERE ${filtros}`;
-//         }
-//         const response = await pool.query(query);
-//         return response.rows;
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
 
 // GET joyas WITH FILTERS AND filter helper
 export const getJoyasWithFilters = async (filters) => {
@@ -68,7 +45,8 @@ export const getJoyasWithFilters = async (filters) => {
         const response = await pool.query(query, values);
         return response.rows;
     } catch (error) {
-        console.log(error);
-        throw error;
+        throw new Error(
+            "Error getting jewels with this filters: " + error.message
+        );
     }
 };

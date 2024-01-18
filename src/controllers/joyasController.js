@@ -6,12 +6,29 @@ import {
 
 import { prepareHATEOAS } from "../helpers/hateoas.js";
 import { errorFinder } from "../utils/utils.js";
+import { pagination } from "../helpers/paginator.js";
 
-// TEST CONSULT TO SEE IF DATABASE IS CORRECTLY CONNECTED
+// GET inventario
 export const getAllJoyas = async (req, res) => {
     try {
         const joyas = await getJoyas();
         res.status(200).json(joyas);
+    } catch (error) {
+        console.log(error);
+        const errorFound = errorFinder(error.code);
+        return res
+            .status(errorFound[0]?.status)
+            .json({ error: errorFound[0]?.message });
+    }
+};
+
+// GET inventario WITH PAGINATION
+export const getAllJoyasWithPagination = async (req, res) => {
+    try {
+        const { items, page } = req.query;
+        const inventario = await getJoyas();
+        const paginationData = pagination(inventario, items, page);
+        res.status(200).json(paginationData);
     } catch (error) {
         console.log(error);
         const errorFound = errorFinder(error.code);
@@ -36,26 +53,6 @@ export const getAllJoyasWithQuery = async (req, res) => {
             .json({ error: errorFound[0]?.message });
     }
 };
-
-// GET joyas WITH FILTERS AND filter helper
-// export const getFilteredJoyas = async (req, res) => {
-//     try {
-//         const { precio_max, precio_min, categoria, metal } = req.query;
-//         const joyas = await getJoyasWithFilters(
-//             precio_max,
-//             precio_min,
-//             categoria,
-//             metal
-//         );
-//         res.status(200).json(joyas);
-//     } catch (error) {
-//         console.log(error);
-//         const errorFound = errorFinder(error.code);
-//         return res
-//             .status(errorFound[0]?.status)
-//             .json({ error: errorFound[0]?.message });
-//     }
-// };
 
 // GET joyas WITH FILTERS AND filter helper
 export const getFilteredJoyas = async (req, res) => {

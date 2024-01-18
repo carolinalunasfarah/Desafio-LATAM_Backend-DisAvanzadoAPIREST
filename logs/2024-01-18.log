@@ -1,0 +1,40 @@
+
+Started GET /joyas for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 10:54:22 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 68 ms Request ID: [fae70d14-461d-455e-8438-0e4d2d9fa9bf]
+
+Started GET /joyas/filtros?precio_min=25000&precio_max=30000&categoria=aros&metal=plata for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 10:54:47 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 36 ms Request ID: [d666d559-5e0d-4d2f-82cc-9e3041a9f4c9]
+
+Started GET /joyas?limit=3&page=2&order_by=stock_ASC for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 10:54:51 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 3 ms Request ID: [0ea972ac-cf73-41ce-96ef-09518ec41593]
+
+Started GET /inventario for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 10:55:04 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 33 ms Request ID: [b3040af0-2715-4909-b5bd-f1defac77d0b]
+
+Started GET /inventario for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:07:42 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 400 message:  Time response: 52 ms Request ID: [d1ab91de-eeb0-456c-9cb9-35fa1f0ef676]
+
+Started GET /inventario for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:09:24 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 400 message:  Time response: 43 ms Request ID: [c305af12-9004-4499-8200-3ce53a8fdfe2]
+
+Started GET /inventario/pagination for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:15:49 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 44 ms Request ID: [da4ed4dc-1190-4588-9bc1-e2acd9592ac9]
+
+Started GET /inventario/pagination?items=6&page=2 for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:16:25 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 33 ms Request ID: [69286149-8fbf-48b9-abdf-52ebe46594d0]
+
+Started GET /inventario/pagination?items=1&page=2 for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:16:35 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 4 ms Request ID: [0c2be1b9-bd73-42bc-9b03-c3080b19e494]
+
+Started GET /inventario/pagination?items=6&page=1 for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:16:47 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 200 message:  Time response: 30 ms Request ID: [9ddeee72-bb7f-47da-8a10-479e07ef8a52]

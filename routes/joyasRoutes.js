@@ -1,16 +1,24 @@
 import { Router } from "express";
 import {
     getAllJoyas,
+    getAllJoyasWithPagination,
     getAllJoyasWithQuery,
     getFilteredJoyas,
 } from "../src/controllers/joyasController.js";
 
 const router = Router();
 
-// TEST CONSULT TO SEE IF DATABASE IS CORRECTLY CONNECTED
+// GET inventario
 router
     .route("/inventario")
     .get(getAllJoyas)
+    .all(function (req, res, next) {
+        res.status(405).json({ message: "method not allowed" });
+    });
+
+    router
+    .route("/inventario/pagination")
+    .get(getAllJoyasWithPagination)
     .all(function (req, res, next) {
         res.status(405).json({ message: "method not allowed" });
     });

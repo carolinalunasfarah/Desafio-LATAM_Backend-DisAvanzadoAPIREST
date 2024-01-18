@@ -3,7 +3,10 @@ export const prepareHATEOAS = (entity, data) => {
         .map((i) => {
             return {
                 name: i.nombre,
-                href: `/${entity}/joya/${i.id}`,
+                links: [
+                    { routeRef: `/${entity}/joya/${i.id}` },
+                    { href: `http://localhost:5000/${entity}/${i.id}` },
+                ],
             };
         })
         .slice(0, 4);
