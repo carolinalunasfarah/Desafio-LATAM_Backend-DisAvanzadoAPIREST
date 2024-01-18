@@ -38,3 +38,11 @@ Completed: 200 message:  Time response: 4 ms Request ID: [0c2be1b9-bd73-42bc-9b0
 Started GET /inventario/pagination?items=6&page=1 for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:16:47 GMT-0300 (hora de verano de Chile)
   Parameters in body: {}
 Completed: 200 message:  Time response: 30 ms Request ID: [9ddeee72-bb7f-47da-8a10-479e07ef8a52]
+
+Started GET /idsadas for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:22:02 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 500 message:  Time response: 7 ms Request ID: [d62436e0-8f42-47c7-8f5a-8ed872a7e6b8]
+
+Started GET /idsadas for :: ::ffff:127.0.0.1 at Thu Jan 18 2024 11:23:05 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 404 message:  Time response: 6 ms Request ID: [e7301127-26dd-4756-984d-4631ebff60df]

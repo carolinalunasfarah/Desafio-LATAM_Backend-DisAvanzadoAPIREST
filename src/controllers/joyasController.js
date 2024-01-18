@@ -69,3 +69,8 @@ export const getFilteredJoyas = async (req, res) => {
             .json({ error: errorFound[0]?.message });
     }
 };
+
+// NOT FOUND
+export const notFound = (req, res) => {
+    res.status(404).json({ message: "Page not found" });
+};

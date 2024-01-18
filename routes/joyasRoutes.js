@@ -4,6 +4,7 @@ import {
     getAllJoyasWithPagination,
     getAllJoyasWithQuery,
     getFilteredJoyas,
+    notFound,
 } from "../src/controllers/joyasController.js";
 
 const router = Router();
@@ -38,5 +39,7 @@ router
     .all(function (req, res, next) {
         res.status(405).json({ message: "method not allowed" });
     });
+
+router.use("*", notFound);
 
 export default router;
