@@ -13,6 +13,23 @@ export const getJoyas = async (req, res) => {
     }
 };
 
+// GET joyas BY id
+export const getJoyaById = async (id) => {
+    const SQLquery = {
+        text: "SELECT * FROM inventario WHERE id = $1",
+        values: [id],
+    };
+    try {
+        const response = await pool.query(SQLquery);
+        if (response.rowCount === 0) {
+            throw new Error("None jewel found by this id");
+        }
+        return response.rows;
+    } catch (error) {
+        throw new Error("Error getting a jewel by this id: " + error.message);
+    }
+};
+
 // GET joyas USING QUERY STRINGS
 export const getJoyasWithQuery = async (
     order_by = "stock_ASC",
@@ -33,7 +50,7 @@ export const getJoyasWithQuery = async (
         return response.rows;
     } catch (error) {
         throw new Error(
-            "Error getting jewels with this query: " + error.message
+            "Error getting jewels with this query strings: " + error.message
         );
     }
 };

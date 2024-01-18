@@ -1,5 +1,6 @@
 import {
     getJoyas,
+    getJoyaById,
     getJoyasWithQuery,
     getJoyasWithFilters,
 } from "../models/joyaModel.js";
@@ -8,11 +9,13 @@ import { prepareHATEOAS } from "../helpers/hateoas.js";
 import { errorFinder } from "../utils/utils.js";
 import { pagination } from "../helpers/paginator.js";
 
-// GET inventario
-export const getAllJoyas = async (req, res) => {
+// GET inventario WITH PAGINATION
+export const getAllJoyasWithPagination = async (req, res) => {
     try {
-        const joyas = await getJoyas();
-        res.status(200).json(joyas);
+        const { items, page } = req.query;
+        const inventario = await getJoyas();
+        const paginationData = pagination(inventario, items, page);
+        res.status(200).json(paginationData);
     } catch (error) {
         console.log(error);
         const errorFound = errorFinder(error.code);
@@ -22,13 +25,14 @@ export const getAllJoyas = async (req, res) => {
     }
 };
 
-// GET inventario WITH PAGINATION
-export const getAllJoyasWithPagination = async (req, res) => {
+// GET joyas BY id
+export const getJoyasById = async (req, res) => {
+    const { id } = req.params;
     try {
-        const { items, page } = req.query;
-        const inventario = await getJoyas();
-        const paginationData = pagination(inventario, items, page);
-        res.status(200).json(paginationData);
+        const joya = await getJoyaById(id);
+        res.status(!joya ? 404 : 200).json(
+            !joya ? { error: "Joya not found" } : joya
+        );
     } catch (error) {
         console.log(error);
         const errorFound = errorFinder(error.code);

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-    getAllJoyas,
+    getJoyasById,
     getAllJoyasWithPagination,
     getAllJoyasWithQuery,
     getFilteredJoyas,
@@ -12,14 +12,15 @@ const router = Router();
 // GET inventario
 router
     .route("/inventario")
-    .get(getAllJoyas)
+    .get(getAllJoyasWithPagination)
     .all(function (req, res, next) {
         res.status(405).json({ message: "method not allowed" });
     });
 
-    router
-    .route("/inventario/pagination")
-    .get(getAllJoyasWithPagination)
+// GET joya BY id, this is only for the href at HATEOAS works
+router
+    .route("/inventario/joyas/:id")
+    .get(getJoyasById)
     .all(function (req, res, next) {
         res.status(405).json({ message: "method not allowed" });
     });

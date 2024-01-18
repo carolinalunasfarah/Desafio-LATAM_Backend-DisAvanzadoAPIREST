@@ -5,7 +5,7 @@ export const prepareHATEOAS = (entity, data) => {
                 name: i.nombre,
                 links: [
                     { routeRef: `/${entity}/joya/${i.id}` },
-                    { href: `http://localhost:5000/${entity}/${i.id}` },
+                    { href: `http://localhost:3000/inventario/${entity}/${i.id}` },
                 ],
             };
         })
